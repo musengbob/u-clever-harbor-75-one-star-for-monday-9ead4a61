@@ -9,6 +9,14 @@ import { join } from "node:path";
 const ENTRY =
   "One star. Booked a table for Monday, waited an hour, the waiter served cold coffee, and the bill charged me for all seven days.";
 
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "output";
+function buildEntryLine(): string {
+  return ENTRY;
+}
+
+function resolveOutputDir(): string {
+  return process.env.MAKEFUN_OUTPUT_DIR ?? "output";
+}
+
+const outDir = resolveOutputDir();
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, "entry.txt"), ENTRY, "utf8");
+writeFileSync(join(outDir, "entry.txt"), buildEntryLine(), "utf8");
